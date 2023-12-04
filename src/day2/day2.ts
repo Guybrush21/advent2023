@@ -36,6 +36,28 @@ export interface Colors {
   green: number;
 }
 
+export function powerOfCubes(data: string) {
+  const dataArray = data.split("\n");
+
+  const maxBlue = 14;
+  const maxRed = 12;
+  const maxGreen = 13;
+
+  let sumOfPowerOfCubes = 0;
+  for (const row of dataArray) {
+    if (!row) continue;
+    const gameId = getGameId(row);
+
+    const games = row.split(":").at(1);
+    if (!games) continue;
+
+    const maxColors = getMaxColorForPlays(games);
+    const powerOfCurrentGame = maxColors.red * maxColors.blue * maxColors.green;
+    sumOfPowerOfCubes += powerOfCurrentGame;
+  }
+  return sumOfPowerOfCubes;
+}
+
 export function getMaxColorForPlays(plays: string) {
   const maxColor: Colors = {
     red: 0,
@@ -87,4 +109,9 @@ export function getGameId(row: string) {
 export async function solve21() {
   const data = await Deno.readTextFile("data/2.data");
   return gamecube(data);
+}
+
+export async function solve22() {
+  const data = await Deno.readTextFile("data/2.data");
+  return powerOfCubes(data);
 }
