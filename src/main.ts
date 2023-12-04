@@ -1,5 +1,6 @@
 import { solveFirst, solveSecond } from "./day1/day1.ts";
 import { solve21, solve22 } from "./day2/day2.ts";
+import { solve31, solve32 } from "./day3/day3.ts";
 import { logger } from "./log.ts";
 
 if (import.meta.main) {
@@ -15,4 +16,9 @@ if (import.meta.main) {
   logger.info(`Day 2 gamecube:  ${day2_1}`);
   const day2_2 = await solve22();
   logger.info(`Day 2 power of cubes:  ${day2_2}`);
+
+  logger.info("=== Day 3 ===");
+  const day3_1 = await solve31();
+  logger.info(`Day 2 Gear Ratio:  ${day3_1}`);
+  logger.info(`Day 2 Gear Ratio Multiplier: ${await solve32()}`);
 }
