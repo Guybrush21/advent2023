@@ -33,10 +33,10 @@ export function scratcards(data: string) {
     const matches = playedNumbers.filter(
       (x) => !isNaN(x) && winningNumbers.includes(x)
     );
-    logger.info(matches.sort());
+    logger.debug(matches.sort());
     let result = 0;
     if (matches.length >= 1) result = Math.pow(2, matches.length - 1);
-    logger.info({ winningNumbers, playedNumbers });
+    logger.debug({ winningNumbers, playedNumbers });
     logger.debug({ card, matches, result, total });
 
     total += result;

@@ -39,14 +39,9 @@ export interface Colors {
 export function powerOfCubes(data: string) {
   const dataArray = data.split("\n");
 
-  const maxBlue = 14;
-  const maxRed = 12;
-  const maxGreen = 13;
-
   let sumOfPowerOfCubes = 0;
   for (const row of dataArray) {
     if (!row) continue;
-    const gameId = getGameId(row);
 
     const games = row.split(":").at(1);
     if (!games) continue;
