@@ -1,7 +1,7 @@
 import { solveFirst, solveSecond } from "./day1/day1.ts";
 import { solve21, solve22 } from "./day2/day2.ts";
 import { solve31, solve32 } from "./day3/day3.ts";
-import { solve41 } from "./day4/day4.ts";
+import { solve41, solve42 } from "./day4/day4.ts";
 import { logger } from "./log.ts";
 
 if (import.meta.main) {
@@ -26,4 +26,6 @@ if (import.meta.main) {
   logger.info("=== Day 4 ===");
   const day4_1 = await solve41();
   logger.info(`Day 4 Scratchcards:  ${day4_1}`);
+  const day4_2 = await solve42();
+  logger.info(`Day 4 Scratchcards copies:  ${day4_2}`);
 }
