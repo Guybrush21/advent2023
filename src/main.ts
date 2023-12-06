@@ -31,6 +31,6 @@ if (import.meta.main) {
   logger.info(`Day 4 Scratchcards copies:  ${day4_2}`);
 
   logger.info("=== Day 5 ===");
-  let result = await solve51();
+  const result = await solve51();
   logger.info(`Day 5 Almanac lowest location:  ${result}`);
 }
