@@ -8,7 +8,7 @@ export interface FromToMap {
 export function minLocation(almanac: Almanac) {
   const locations = almanac.getLocationsForSeeds();
   logger.info(locations);
-  return locations.sort().at(0);
+  return locations.sort((a, b) => a - b).at(0);
 }
 
 export async function solve51() {
