@@ -40,6 +40,6 @@ if (import.meta.main) {
   logger.info("=== Day 6 ===");
   const s61 = await solve61();
   logger.info(`Day 6 Racing options:  ${s61}`);
-  const s62 = await solve62();
+  const s62 = solve62();
   logger.info(`Day 6 Racing options Big:  ${s62}`);
 }
