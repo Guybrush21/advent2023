@@ -2,6 +2,7 @@ import { solveFirst, solveSecond } from "./day1/day1.ts";
 import { solve21, solve22 } from "./day2/day2.ts";
 import { solve31, solve32 } from "./day3/day3.ts";
 import { solve41, solve42 } from "./day4/day4.ts";
+// deno-lint-ignore no-unused-vars
 import { solve51, solve52 } from "./day5/day5.ts";
 import { logger } from "./log.ts";
 
@@ -31,8 +32,8 @@ if (import.meta.main) {
   logger.info(`Day 4 Scratchcards copies:  ${day4_2}`);
 
   logger.info("=== Day 5 ===");
-  let result = await solve51();
-  logger.info(`Day 5 Almanac lowest location:  ${result}`);
-  result = await solve52();
-  logger.info(`Day 5 Almanac full seeds lowest location:  ${result}`);
+  const s51 = await solve51();
+  logger.info(`Day 5 Almanac lowest location:  ${s51}`);
+  // const s52 = await solve52();
+  // logger.info(`Day 5 Almanac full seeds lowest location:  ${s52}`);
 }
