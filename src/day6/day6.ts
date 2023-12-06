@@ -38,7 +38,8 @@ export async function solve61() {
 
 export async function solve62() {
   const data = await Deno.readTextFile("data/4.data");
-  return boatRace(data);
+  return boatRace(`Time: 55999793
+Distance: 401148522741405`);
 }
 
 export function parseRace(data: string) {
