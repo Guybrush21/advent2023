@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run --watch --allow-read src/main.ts",
+    "dev": "deno run --v8-flags=--max-old-space-size=16000 --watch --allow-read src/main.ts",
     "test": "deno test --watch"
   }
 }

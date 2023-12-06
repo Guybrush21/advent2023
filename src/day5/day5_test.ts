@@ -35,10 +35,24 @@ humidity-to-location map:
 56 93 4`;
 
 const t = new Almanac(data);
+const rangeAlmanac = new Almanac(data, true);
 
 Deno.test("D05.1", () => {
   assertEquals(minLocation(t), 35);
 });
+
+Deno.test("D05.2", () => {
+  assertEquals(minLocation(rangeAlmanac), 46);
+});
+//
+// Deno.test("parseSeeds with range", () => {
+//   assertEquals(rangeAlmanac["parseSeedsRange"]("seeds: 1 2").map(x=>x), [1, 2]);
+//   assertEquals(
+//     rangeAlmanac["parseSeedsRange"]("seeds: 1 2 5 5"),
+//     [1, 2, 5, 6, 7, 8, 9],
+//   );
+//   / assertEquals(rangeAlmanac["parseSeeds"]("seeds: 13"), [13]);
+// });
 
 Deno.test("parseSeeds", () => {
   assertEquals(t["parseSeeds"]("seeds: 79 14 55 13"), [79, 14, 55, 13]);
