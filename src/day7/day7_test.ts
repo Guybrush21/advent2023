@@ -9,6 +9,7 @@ import {
   camelCards,
   cardCompare,
   getHandType,
+  handleJokerForType,
 } from "./day7.ts";
 
 const data = `32T3K 765
@@ -77,5 +78,79 @@ Deno.test("D07 cardCompare", () => {
       { type: HandType.ONE_PAIR, hand: "AA224", bid: 1 },
     ),
     0,
+  );
+  assertLessOrEqual(
+    cardCompare(
+      { type: HandType.ONE_PAIR, hand: "*KKK2", bid: 1 },
+      { type: HandType.ONE_PAIR, hand: "QQQQ2", bid: 1 },
+    ),
+    -1,
+  );
+});
+
+Deno.test("D07 handle Joker", () => {
+  assertEquals(
+    handleJokerForType({ hand: "2345*", bid: 1, type: HandType.HIGH_CARD })
+      .type,
+    HandType.ONE_PAIR,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "2245*", bid: 1, type: HandType.ONE_PAIR }).type,
+    HandType.THREE_KIND,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "2255*", bid: 1, type: HandType.TWO_PAIR }).type,
+    HandType.FULL,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "2225*", bid: 1, type: HandType.THREE_KIND })
+      .type,
+    HandType.FOUR_KIND,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "2222*", bid: 1, type: HandType.FOUR_KIND })
+      .type,
+    HandType.FIVE_KIND,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "234**", bid: 1, type: HandType.ONE_PAIR }).type,
+    HandType.THREE_KIND,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "233**", bid: 1, type: HandType.TWO_PAIR }).type,
+    HandType.FOUR_KIND,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "333**", bid: 1, type: HandType.FULL }).type,
+    HandType.FIVE_KIND,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "12***", bid: 1, type: HandType.THREE_KIND })
+      .type,
+    HandType.FOUR_KIND,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "*2225", bid: 1, type: HandType.THREE_KIND })
+      .type,
+    HandType.FOUR_KIND,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "22***", bid: 1, type: HandType.FULL }).type,
+    HandType.FIVE_KIND,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "*****", bid: 1, type: HandType.FIVE_KIND })
+      .type,
+    HandType.FIVE_KIND,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "2****", bid: 1, type: HandType.FOUR_KIND })
+      .type,
+    HandType.FIVE_KIND,
+  );
+  assertEquals(
+    handleJokerForType({ hand: "2222*", bid: 1, type: HandType.FOUR_KIND })
+      .type,
+    HandType.FIVE_KIND,
   );
 });

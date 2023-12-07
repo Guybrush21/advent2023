@@ -1,10 +1,10 @@
 import { solveFirst, solveSecond } from "./day1/day1.ts";
 import { solve21, solve22 } from "./day2/day2.ts";
 import { solve31, solve32 } from "./day3/day3.ts";
-import { solve41, solve42 } from "./day4/day4.ts"; // deno-lint-ignore no-unused-vars
+import { solve41, solve42 } from "./day4/day4.ts";
 import { solve51, solve52 } from "./day5/day5.ts";
 import { solve61, solve62 } from "./day6/day6.ts";
-import { solve71 } from "./day7/day7.ts";
+import { solve71, solve72 } from "./day7/day7.ts";
 import { logger } from "./log.ts";
 
 if (import.meta.main) {
@@ -52,5 +52,7 @@ if (import.meta.main) {
 
   logger.info("=== Day 7 ===");
   const s71 = await solve71();
-  logger.info(`Day 7 Racing options:  ${s71}`);
+  logger.info(`Day 7 Camel Cards:  ${s71}`);
+  const s72 = await solve72();
+  logger.info(`Day 7 Camel Cards with jokers:  ${s72}`);
 }
