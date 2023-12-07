@@ -7,7 +7,7 @@ interface Race {
 
 export function boatRace(data: string) {
   const races = parseRace(data);
-  logger.info(races);
+  logger.debug(races);
   const options: number[] = [];
   for (const race of races) {
     options.push(getRaceWinningOptions(race));

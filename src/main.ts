@@ -1,13 +1,15 @@
 import { solveFirst, solveSecond } from "./day1/day1.ts";
 import { solve21, solve22 } from "./day2/day2.ts";
 import { solve31, solve32 } from "./day3/day3.ts";
-import { solve41, solve42 } from "./day4/day4.ts";
-// deno-lint-ignore no-unused-vars
+import { solve41, solve42 } from "./day4/day4.ts"; // deno-lint-ignore no-unused-vars
 import { solve51, solve52 } from "./day5/day5.ts";
 import { solve61, solve62 } from "./day6/day6.ts";
+import { solve71 } from "./day7/day7.ts";
 import { logger } from "./log.ts";
 
 if (import.meta.main) {
+  const onlyFast: boolean = Boolean(Deno.env.get("ONLY_FAST")) ?? true;
+
   logger.info("AOC - 2023");
   logger.info("=== Day 1 ===");
   const day1_1 = await solveFirst();
@@ -29,17 +31,26 @@ if (import.meta.main) {
   logger.info("=== Day 4 ===");
   const day4_1 = await solve41();
   logger.info(`Day 4 Scratchcards:  ${day4_1}`);
-  const day4_2 = await solve42();
-  logger.info(`Day 4 Scratchcards copies:  ${day4_2}`);
-
+  if (!onlyFast) {
+    const day4_2 = await solve42();
+    logger.info(`Day 4 Scratchcards copies:  ${day4_2}`);
+  }
   logger.info("=== Day 5 ===");
   const s51 = await solve51();
   logger.info(`Day 5 Almanac lowest location:  ${s51}`);
-  // const s52 = await solve52();
-  // logger.info(`Day 5 Almanac full seeds lowest location:  ${s52}`);
+
+  if (!onlyFast) {
+    const s52 = await solve52();
+    logger.info(`Day 5 Almanac full seeds lowest location:  ${s52}`);
+  }
+
   logger.info("=== Day 6 ===");
   const s61 = await solve61();
   logger.info(`Day 6 Racing options:  ${s61}`);
   const s62 = solve62();
   logger.info(`Day 6 Racing options Big:  ${s62}`);
+
+  logger.info("=== Day 7 ===");
+  const s71 = await solve71();
+  logger.info(`Day 7 Racing options:  ${s71}`);
 }
