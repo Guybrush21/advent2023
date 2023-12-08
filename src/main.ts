@@ -5,6 +5,7 @@ import { solve41, solve42 } from "./day4/day4.ts";
 import { solve51, solve52 } from "./day5/day5.ts";
 import { solve61, solve62 } from "./day6/day6.ts";
 import { solve71, solve72 } from "./day7/day7.ts";
+import { solve81 } from "./day8/day8.ts";
 import { logger } from "./log.ts";
 
 if (import.meta.main) {
@@ -55,4 +56,8 @@ if (import.meta.main) {
   logger.info(`Day 7 Camel Cards:  ${s71}`);
   const s72 = await solve72();
   logger.info(`Day 7 Camel Cards with jokers:  ${s72}`);
+
+  logger.info("=== Day 8 ===");
+  const s81 = await solve81();
+  logger.info(`Day 8 Escape desert:  ${s81}`);
 }
