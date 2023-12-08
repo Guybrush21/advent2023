@@ -16,6 +16,35 @@ export function escapeDesert(data: string): number {
   return navigate(map);
 }
 
+export function escapeGhost(data: string): number {
+  const map = parseMap(data);
+  return ghostNavigation(map);
+}
+
+export function ghostNavigation(map: Map): number {
+  let step = 0;
+
+  const ghostLocation = map.network
+    .filter((l) => l.point.endsWith("A"))
+    .map((x) => x.point);
+  while (!ghostLocation.every((l) => l.endsWith("Z"))) {
+    for (let i = 0; i < ghostLocation.length; i++) {
+      let current = ghostLocation[i];
+      const direction = map.steps[step % map.steps.length];
+      const node = map.network.find((x) => x.point === current);
+
+      if (node === undefined)
+        throw new Error("Cannot navigate the network. Destination not found");
+      if (direction == "L") current = node?.left;
+      else current = node?.right;
+      ghostLocation[i] = current;
+      logger.debug({ current, direction, node });
+    }
+    step++;
+  }
+  logger.debug(ghostLocation);
+  return step;
+}
 export function navigate(map: Map): number {
   let step = 0;
   let current = "AAA";
@@ -57,4 +86,8 @@ export function parseNetwork(networkData: string): Network[] {
 export async function solve81() {
   const data = await Deno.readTextFile("data/8.data");
   return escapeDesert(data);
+}
+export async function solve82() {
+  const data = await Deno.readTextFile("data/8.data");
+  return escapeGhost(data);
 }
