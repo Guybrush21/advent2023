@@ -6,6 +6,7 @@ import { solve51, solve52 } from "./day5/day5.ts";
 import { solve61, solve62 } from "./day6/day6.ts";
 import { solve71, solve72 } from "./day7/day7.ts";
 import { solve81, solve82 } from "./day8/day8.ts";
+import { solve91, solve92 } from "./day9/day9.ts";
 import { logger } from "./log.ts";
 
 if (import.meta.main) {
@@ -62,4 +63,10 @@ if (import.meta.main) {
   logger.info(`Day 8 Escape desert:  ${s81}`);
   const s82 = await solve82();
   logger.info(`Day 8 Escape desert as a ghost:  ${s82}`);
+
+  logger.info("=== Day 9 ===");
+  const s91 = await solve91();
+  logger.info(`Day 8 Mirage:  ${s91}`);
+  const s92 = await solve92();
+  logger.info(`Day 8 Mirage backward:  ${s92}`);
 }
