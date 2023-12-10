@@ -23,10 +23,10 @@ export function escapeGhost(data: string): number {
 
 const gcd = (a: number, b: number): number => (b == 0 ? a : gcd(b, a % b));
 const lcm = (a: number, b: number): number => (a / gcd(a, b)) * b;
-const lcmAll = (ns: any[]) => ns.reduce(lcm, 1);
+const lcmAll = (ns: number[]) => ns.reduce(lcm, 1);
 
 export function ghostNavigation(map: Map): number {
-  let steps: number[] = [];
+  const steps: number[] = [];
 
   const ghostsPoint = map.network.filter((x) => x.point.endsWith("A"));
 
