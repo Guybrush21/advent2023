@@ -21,30 +21,35 @@ export function escapeGhost(data: string): number {
   return ghostNavigation(map);
 }
 
-export function ghostNavigation(map: Map): number {
-  let step = 0;
+const gcd = (a: number, b: number): number => (b == 0 ? a : gcd(b, a % b));
+const lcm = (a: number, b: number): number => (a / gcd(a, b)) * b;
+const lcmAll = (ns: any[]) => ns.reduce(lcm, 1);
 
-  const ghostLocation = map.network
-    .filter((l) => l.point.endsWith("A"))
-    .map((x) => x.point);
-  while (!ghostLocation.every((l) => l.endsWith("Z"))) {
-    for (let i = 0; i < ghostLocation.length; i++) {
-      let current = ghostLocation[i];
+export function ghostNavigation(map: Map): number {
+  let steps: number[] = [];
+
+  const ghostsPoint = map.network.filter((x) => x.point.endsWith("A"));
+
+  for (const point of ghostsPoint) {
+    let current = point.point;
+    let step = 0;
+    while (!current.endsWith("Z")) {
       const direction = map.steps[step % map.steps.length];
       const node = map.network.find((x) => x.point === current);
-
       if (node === undefined)
         throw new Error("Cannot navigate the network. Destination not found");
       if (direction == "L") current = node?.left;
       else current = node?.right;
-      ghostLocation[i] = current;
       logger.debug({ current, direction, node });
+      step++;
     }
-    step++;
+    steps.push(step);
+    step = 0;
   }
-  logger.debug(ghostLocation);
-  return step;
+  logger.debug(steps);
+  return lcmAll(steps);
 }
+
 export function navigate(map: Map): number {
   let step = 0;
   let current = "AAA";
